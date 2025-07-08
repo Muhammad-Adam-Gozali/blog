@@ -9,10 +9,10 @@
                   </div>
                   <div class="hidden md:block">
                       <div class="ml-10 flex items-baseline space-x-4">
-                          <x-nav-link href="home" :current="request()->routeIs('home')">Home</x-nav-link>
-                          <x-nav-link href="blog" :current="request()->routeIs('blog')">Blog</x-nav-link>
-                          <x-nav-link href="about" :current="request()->routeIs('about')">About</x-nav-link>
-                          <x-nav-link href="contact" :current="request()->routeIs('contact')">Contact</x-nav-link>
+                          <x-nav-link href="{{ route('home') }}" :current="request()->routeIs('home')">Home</x-nav-link>
+                          <x-nav-link href="{{ route('posts') }}" :current="request()->routeIs('posts')">Blog</x-nav-link>
+                          <x-nav-link href="{{ route('about') }}" :current="request()->routeIs('about')">About</x-nav-link>
+                          <x-nav-link href="{{ route('contact') }}" :current="request()->routeIs('contact')">Contact</x-nav-link>
                       </div>
                   </div>
               </div>
@@ -83,10 +83,10 @@
       <!-- Mobile menu, show/hide based on menu state. -->
       <div x-show="isOpen" class="md:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <x-nav-link class="block" href="home" :current="request()->routeIs('home')">Home</x-nav-link>
-              <x-nav-link class="block" href="blog" :current="request()->routeIs('blog')">Blog</x-nav-link>
-              <x-nav-link class="block" href="about" :current="request()->routeIs('about')">About</x-nav-link>
-              <x-nav-link class="block" href="contact" :current="request()->routeIs('contact')">Contact</x-nav-link>
+              <x-nav-link class="block" href="{{ route('home') }}" :current="request()->routeIs('home')">Home</x-nav-link>
+              <x-nav-link class="block" href="{{ route('posts') }}" :current="request()->routeIs('posts')">Blog</x-nav-link>
+              <x-nav-link class="block" href="{{ route('about') }}" :current="request()->routeIs('about')">About</x-nav-link>
+              <x-nav-link class="block" href="{{ route('contact') }}" :current="request()->routeIs('contact')">Contact</x-nav-link>
           </div>
           <div class="border-t border-gray-700 pt-4 pb-3">
               <div class="flex items-center px-5">
