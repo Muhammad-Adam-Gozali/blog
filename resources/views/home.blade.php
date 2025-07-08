@@ -1,4 +1,4 @@
-<x-layout :title="$title">
+<x-master-layout :title="$title">
     <p>Welcome to my home page</p>
     <div class="flex mt-3">
         @for ($i = 0; $i < 10; $i++)

@@ -9,14 +9,10 @@
                   </div>
                   <div class="hidden md:block">
                       <div class="ml-10 flex items-baseline space-x-4">
-                          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                         <x-nav-link href="home">Home</x-nav-link>
-                          <a href="{{ route('blog') }}"
-                              class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Blog</a>
-                          <a href="{{ route('about') }}"
-                              class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
-                          <a href="{{ route('contact') }}"
-                              class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+                          <x-nav-link href="home" :current="request()->routeIs('home')">Home</x-nav-link>
+                          <x-nav-link href="blog" :current="request()->routeIs('blog')">Blog</x-nav-link>
+                          <x-nav-link href="about" :current="request()->routeIs('about')">About</x-nav-link>
+                          <x-nav-link href="contact" :current="request()->routeIs('contact')">Contact</x-nav-link>
                       </div>
                   </div>
               </div>
@@ -45,12 +41,16 @@
                               role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                               tabindex="-1">
                               <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                  tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                  tabindex="-1" id="user-menu-item-1">Settings</a>
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                  tabindex="-1" id="user-menu-item-2">Sign out</a>
+                              <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700"
+                                  role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                              {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                  tabindex="-1" id="user-menu-item-1">Settings</a> --}}
+                              <form method="POST" action="{{ route('logout') }}" role="menuitem" tabindex="-1"
+                                  id="user-menu-item-2">
+                                  @csrf
+                                  <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                      id="user-menu-item-2">{{ __('Sign out') }}</button>
+                              </form>
                           </div>
                       </div>
                   </div>
@@ -83,16 +83,10 @@
       <!-- Mobile menu, show/hide based on menu state. -->
       <div x-show="isOpen" class="md:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="{{ route('home') }}"
-                  class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-                  aria-current="page">Home</a>
-              <a href="{{ route('blog') }}"
-                  class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Blog</a>
-              <a href="{{ route('about') }}"
-                  class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
-              <a href="{{ route('contact') }}"
-                  class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+              <x-nav-link class="block" href="home" :current="request()->routeIs('home')">Home</x-nav-link>
+              <x-nav-link class="block" href="blog" :current="request()->routeIs('blog')">Blog</x-nav-link>
+              <x-nav-link class="block" href="about" :current="request()->routeIs('about')">About</x-nav-link>
+              <x-nav-link class="block" href="contact" :current="request()->routeIs('contact')">Contact</x-nav-link>
           </div>
           <div class="border-t border-gray-700 pt-4 pb-3">
               <div class="flex items-center px-5">
@@ -110,8 +104,8 @@
                   <a href="#"
                       class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your
                       Profile</a>
-                  <a href="#"
-                      class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
+                  {{-- <a href="#"
+                      class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a> --}}
                   <a href="#"
                       class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign
                       out</a>
